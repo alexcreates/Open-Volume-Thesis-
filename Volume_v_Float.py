@@ -7,8 +7,8 @@ calculates a fixed shares float amount
 against the increasing volume of the day. Here we are looking for
 any correlation between price movement (increasing or decreasing)
 and affect on unbiased volume amounts.
-in calc_all_openvol() we are calculating 50 iterations per float increase
-it is fanning each fixed float point with volume starting from
+calc_all_openvol() is calculating 50 iterations per float increase
+it is fanning each fixed float point with volume starting from 10,000 and increasing by increments of 10,000
 10,000,
 20,000
 30,000
@@ -18,7 +18,7 @@ to
 500,000
 
 
-our boundaries are set at
+initial boundaries are set at
 
 1) start Volume = 10,000
 2) start Float = 60,000    (60,000 float is unrealistic however we want to monitor all possible correlations)
@@ -26,11 +26,9 @@ our boundaries are set at
 3) end Volume = 500,000
 4) end Float 10,000,000
 
-We are filtering tickers that have
 Here the approach is to set the boundaries of the calculation
 very low and very high to capture all possible movement.
-The idea is to gather this data to later plot
-and check the results
+The idea is to gather this data to later plot and analyze results. 
 
 """
 
@@ -49,7 +47,6 @@ def calc_all_openvol():
             vol_list.append(Volume)
             results_list.append(decimal.Decimal(Volume) / decimal.Decimal(Float))
             idx_list.append(idx)
-            # print str(decimal.Decimal(Volume) / decimal.Decimal(Float)) + '  results  ' + str(Volume) + '  vol_results  ' + str(Float) + '  float_results'
             Volume += 10000;
             idx += 1
         Volume = 0
@@ -69,10 +66,10 @@ def calc_all_openvol():
     This method targets a single fixed shares float
     amount and calculates the growth in volume Starting
     at ten-thousand and increasing by ten-thousand at each
-    loop (50 times) that allows us to calculate the movement
-    of 10,000 - 500,000 in volume with one method call.
+    iteration (50 times) that allows us to calculate the movement
+    between 10,000 - 500,000 in volume with one method call.
     Again this only targets a single float value provided where
-    the first methods calulcates all..... O_o
+    the first methods calulcates all.....O_o
 """
 def target_single_float(float):
     print "25 Million Fixed Float Results:"
