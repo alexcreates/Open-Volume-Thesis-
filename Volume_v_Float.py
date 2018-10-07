@@ -3,7 +3,7 @@ import decimal
 from matplotlib import pyplot as plt
 
 """
-The open volume thesis calculates a fixed shares float amount
+calculates a fixed shares float amount
 against the increasing volume of the day. Here we are looking for
 any correlation between price movement (increasing or decreasing)
 and affect on unbiased volume amounts.
